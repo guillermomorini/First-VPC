@@ -30,6 +30,6 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 }
 
 resource "aws_s3_bucket_acl" "acl" {
-  bucket = aws_s3_bucket.first_bucket
+  bucket = aws_s3_bucket.first_bucket.id
   acl = "public-read"
 }
