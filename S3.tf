@@ -1,16 +1,15 @@
 resource "aws_s3_bucket" "first_bucket" {
-    bucket = "gmorini-first-bucket"
-    acl = "public-read"
+  bucket = "gmorini-first-bucket"
 }
 
 resource "aws_s3_bucket_cors_configuration" "cors_config" {
-    bucket = aws_s3_bucket.first_bucket.id
-    cors_rule {
-        allowed_headers = ["Authorization", "Content-length"]
-        allowed_methods = ["GET", "POST"]
-        allowed_origins = ["https://www.gmorini.org"]
-        max_age_seconds = 3000
-    }
+  bucket = aws_s3_bucket.first_bucket.id
+  cors_rule {
+    allowed_headers = ["Authorization", "Content-length"]
+    allowed_methods = ["GET", "POST"]
+    allowed_origins = ["https://www.gmorini.org"]
+    max_age_seconds = 3000
+  }
 }
 
 resource "aws_s3_bucket_website_configuration" "website_config" {
@@ -24,7 +23,13 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
     key = "404.html"
   }
 }
+
 resource "aws_s3_bucket_policy" "bucket_policy" {
-    bucket = aws_s3_bucket.first_bucket.id
-    policy = templatefile("templates/s3-policy.json", { bucket = "www.gmorini.org"})
+  bucket = aws_s3_bucket.first_bucket.id
+  policy = templatefile("templates/s3-policy.json", { bucket = "www.gmorini.org"})
+}
+
+resource "aws_s3_bucket_acl" "acl" {
+  bucket = aws_s3_bucket.first_bucket
+  acl = "public-read"
 }
