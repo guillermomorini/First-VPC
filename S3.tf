@@ -26,7 +26,7 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
 
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.first_bucket.id
-  policy = templatefile("templates/s3-policy.json", { bucket = "www.gmorini.org"})
+  policy = templatefile("templates/s3-policy.json", { bucket = "gmorini-first-bucket"})
 }
 
 resource "aws_s3_bucket_acl" "acl" {
