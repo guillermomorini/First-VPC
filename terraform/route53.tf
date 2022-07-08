@@ -9,7 +9,7 @@ resource "aws_route53_record" "s3site" {
   
   alias {
     name = aws_s3_bucket.first_bucket.s3_bucket_website_domain
-    zone_id = aws_route53_zone.gmorini.zone_id
+    zone_id = "gmorini.org"
     evaluate_target_health = false
   }
 }
