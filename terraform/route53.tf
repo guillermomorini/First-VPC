@@ -8,7 +8,7 @@ resource "aws_route53_record" "s3site" {
   type = "A"
   
   alias {
-    name = "s3-website.us-east-1.amazonaws.com"
+    name = "s3-website-us-east-1.amazonaws.com"
     zone_id = "Z3AQBSTGFYJSTF"
     evaluate_target_health = false
   }
