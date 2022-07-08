@@ -5,7 +5,7 @@ on:
     branches:
     - main
     paths:
-    - 'application/**'
+    - 'my-app/**'
 
 permissions:
   id-token: write # required to use OIDC authentication
