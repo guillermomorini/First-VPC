@@ -28,6 +28,7 @@ jobs:
         
     - name: Install Packages
       run: npm install
+      working-directory: ./my-app
       
     - name: Build page
       run: npm run build
