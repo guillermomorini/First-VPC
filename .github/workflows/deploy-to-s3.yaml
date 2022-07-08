@@ -26,4 +26,6 @@ jobs:
         aws-region: us-east-1 # use your region here.
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./application/ s3://gmorini.org
+      run: |
+        npm run build
+        aws s3 sync ./my-app/build/ s3://gmorini.org
