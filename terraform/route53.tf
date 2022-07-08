@@ -8,8 +8,8 @@ resource "aws_route53_record" "s3site" {
   type = "A"
   
   alias {
-    name = "s3-website-us-east-1.amazonaws.com"
-    zone_id = "Z3AQBSTGFYJSTF"
+    name =  aws_s3_bucket.first_bucket.website_domain
+    zone_id = aws_s3_bucket.first_bucket.hosted_zone_id
     evaluate_target_health = false
   }
 }
