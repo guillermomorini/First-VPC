@@ -3,6 +3,10 @@ resource "aws_route53_zone" "gmorini" {
 }
 
 resource "aws_route53_record" "s3site" {
+  depends_on = [
+    aws_s3_bucket.first_bucket
+  ]
+  
   zone_id = aws_route53_zone.gmorini.zone_id
   name = "gmorini.org"
   type = "A"
