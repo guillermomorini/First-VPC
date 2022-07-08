@@ -14,10 +14,24 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-
+      
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        
+    - name: Install Packages
+      run: npm install
+      
+    - name: Build page
+      run: npm run build
+      
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -26,6 +40,4 @@ jobs:
         aws-region: us-east-1 # use your region here.
 
     - name: Deploy static site to S3 bucket
-      run: |
-        npm run build
-        aws s3 sync ./my-app/build/ s3://gmorini.org
+      run: aws s3 sync ./my-app/build/ s3://gmorini.org
