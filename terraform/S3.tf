@@ -13,7 +13,7 @@ resource "aws_s3_bucket_cors_configuration" "cors_config" {
 }
 
 resource "aws_s3_bucket_website_configuration" "website_config" {
-  bucket = aws_s3_bucket.first_bucket.id
+  bucket = aws_s3_bucket.first_bucket.bucket
   
   index_document {
     suffix = "index.html"
