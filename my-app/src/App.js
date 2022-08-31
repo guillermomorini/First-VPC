@@ -11,7 +11,7 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://5pgbk69ouh.execute-api.us-east-1.amazonaws.com/GetStartedLambdaProxyIntegration"
           target="_blank"
           rel="noopener noreferrer"
         >
