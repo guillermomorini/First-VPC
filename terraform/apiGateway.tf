@@ -10,7 +10,7 @@ resource "aws_api_gateway_resource" "dog" {
 
 resource "aws_api_gateway_method" "dog_get_method" {
   rest_api_id = aws_api_gateway_rest_api.example.id
-  resource_id = aws_api_gateway_resource.dog
+  resource_id = aws_api_gateway_resource.dog.id
   http_method = "GET"
   authorization = "NONE"
 }
