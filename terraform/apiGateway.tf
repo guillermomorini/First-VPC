@@ -21,3 +21,10 @@ resource "aws_api_gateway_method" "dog_post"{
     http_method = "POST"
     authorization = "NONE"
 }
+
+resource "aws_api_gateway_method_response" "check_in_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.example.id
+  resource_id = aws_api_gateway_resource.chedogck_in_resource.id
+  http_method = aws_api_gateway_method.dog_get_method.http_method
+  status_code = 200
+}
