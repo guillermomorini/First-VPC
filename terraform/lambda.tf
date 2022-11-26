@@ -30,7 +30,26 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
      ],
      "Resource": "arn:aws:logs:*:*:*",
      "Effect": "Allow"
-   }
+   },
+   {
+        "Sid": "DescribeQueryScanBooksTable",
+        "Effect": "Allow",
+        "Action": [
+            "dynamodb:DescribeTable",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:BatchGet*",
+            "dynamodb:DescribeStream",
+            "dynamodb:Get*",
+            "dynamodb:Query",
+            "dynamodb:BatchWrite*",
+            "dynamodb:CreateTable",
+            "dynamodb:Delete*",
+            "dynamodb:Update*",
+            "dynamodb:PutItem"
+        ],
+        "Resource": "arn:aws:dynamodb:us-east-1:335908724754:table/GameScores"
+  }
  ]
 }
 EOF
