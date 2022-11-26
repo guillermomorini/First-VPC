@@ -28,3 +28,4 @@ resource "aws_api_gateway_method_response" "check_in_method_response" {
   http_method = aws_api_gateway_method.dog_get_method.http_method
   status_code = 200
 }
+
