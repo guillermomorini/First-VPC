@@ -34,3 +34,23 @@ resource "aws_api_gateway_method_response" "check_in_method_response" {
 resource "aws_api_gateway_rest_api" "http-crud-tutorial-api" {
   name = "http-crud-tutorial-api"
 }
+
+resource "aws_api_gateway_resource" "item" {
+    rest_api_id = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+    parent_id = aws_api_gateway_rest_api.http-crud-tutorial-api.root_resource_id
+    path_part = "items" 
+}
+
+resource "aws_api_gateway_method" "item_get" {
+  rest_api_id = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+  resource_id = aws_api_gateway_resource.item.id
+  http_method = "GET"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_method" "item_post"{
+    rest_api_id = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+    resource_id = aws_api_gateway_resource.item.id
+    http_method = "POST"
+    authorization = "NONE"
+}
