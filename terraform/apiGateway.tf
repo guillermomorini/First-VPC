@@ -77,3 +77,19 @@ resource "aws_api_gateway_integration" "integration" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.terraform_lambda_func.invoke_arn
 }
+
+resource "aws_api_gateway_deployment" "rest_api_deployment" {
+  rest_api_id = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+  triggers = {
+    redeployment = sha1(jsonencode([
+      aws_api_gateway_resource.item.id,
+      aws_api_gateway_method.item_get.id,
+      aws_api_gateway_integration.integration.id
+    ]))
+  }
+}
+resource "aws_api_gateway_stage" "rest_api_stage" {
+  deployment_id = aws_api_gateway_deployment.rest_api_deployment.id
+  rest_api_id   = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+  stage_name    = "stage_name"
+}
