@@ -29,3 +29,8 @@ resource "aws_api_gateway_method_response" "check_in_method_response" {
   status_code = 200
 }
 
+
+
+resource "aws_api_gateway_rest_api" "http-crud-tutorial-api" {
+  name = "http-crud-tutorial-api"
+}
