@@ -68,3 +68,12 @@ resource "aws_api_gateway_method" "item_put"{
     http_method = "PUT"
     authorization = "NONE"
 }
+
+resource "aws_api_gateway_integration" "integration" {
+  rest_api_id             = aws_api_gateway_rest_api.http-crud-tutorial-api.id
+  resource_id             = aws_api_gateway_resource.item.id
+  http_method             = aws_api_gateway_method.item_get.http_method
+  integration_http_method = "GET"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.terraform_lambda_func.invoke_arn
+}
